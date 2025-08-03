@@ -65,7 +65,7 @@ const useBarStore = create((set, get) => ({
     isMenuLoaded: false,
     isOrdersLoaded: false,
     isStorageLoaded: false,
-
+    guestCurrentOrderIndex: 0,
     guestUsername: '',
     barmanEmail: '',
     barmanSessionActive: false,
@@ -74,6 +74,18 @@ const useBarStore = create((set, get) => ({
         set({
             guestUsername,
             barmanEmail: barmanUsername + '@barapp.com',
+        });
+    },
+
+    setGuestCurrentOrderIndex: (index) => {
+        set({
+            guestCurrentOrderIndex: index,
+        });
+    },
+
+    clearGuestCurrentOrderIndex: () => {
+        set({
+            guestCurrentOrderIndex: 0,
         });
     },
 

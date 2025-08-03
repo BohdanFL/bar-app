@@ -13,11 +13,20 @@ import useSessionStore from '../state/sessionStore';
 const Guest = () => {
     const ColorPalette = useContext(ColorThemeContext);
     const textColor = { color: ColorPalette.main.darkText };
-    const { menu, setGuest, isMenuLoaded, fetchMenuData } = useBarStore();
+    const {
+        menu,
+        setGuest,
+        isMenuLoaded,
+        fetchMenuData,
+        guestCurrentOrderIndex,
+    } = useBarStore();
 
     const { guestSessionActive, clearGuest } = useSessionStore();
 
-    const { index, next, prev, setMax } = useBoundedIndex(0, menu.length - 1);
+    const { index, setIndex, next, prev, setMax } = useBoundedIndex(
+        0,
+        menu.length - 1
+    );
 
     useEffect(() => {
         setMax(menu.length - 1);
@@ -27,6 +36,7 @@ const Guest = () => {
         if (!guestSessionActive) {
             router.replace('/');
         }
+        setIndex(guestCurrentOrderIndex);
     }, []);
 
     useEffect(() => {
